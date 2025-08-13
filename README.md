@@ -9,7 +9,7 @@
 
 ###
 
-<img align="right" height="150" src="https://i.imgflip.com/65efzo.gif"  />
+<img align="right" height="150" src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2025/02/10-things-about-goku-you-d-only-know-if-you-read-the-dragon-ball-manga.jpg?q=70&fit=contain&w=1200&h=628&dpr=1"  />
 
 ###
 
@@ -45,5 +45,43 @@
 <br clear="both">
 
 <img src="https://raw.githubusercontent.com/maurodesouza/maurodesouza/output/snake.svg" alt="Snake animation" />
+   name: Generate Snake Animation
+
+on:
+  schedule:
+    # Runs every 12 hours
+    - cron: "0 */12 * * *"
+
+  workflow_dispatch:
+
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+     Step 1 — Generate snake.svg (dark + light versions)
+      - name: Generate snake.svg files
+        uses: Platane/snk@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/snake-dark.svg?palette=github-dark
+            dist/snake-light.svg?palette=github-light
+
+      # Step 2 — Push the generated files to output branch
+      - name: Push snake files to output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 ###
