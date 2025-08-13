@@ -1,4 +1,4 @@
-<h2 align="left">Hi 👋! My name is ... and I'm a ..., from ....</h2>
+<h2 align="left">Hi 👋! My name is Ankush and I'm a software doveloper, from dholpur </h2>
 
 ###
 
@@ -65,23 +65,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
-    steps:
-     Step 1 — Generate snake.svg (dark + light versions)
-      - name: Generate snake.svg files
-        uses: Platane/snk@v3
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/snake-dark.svg?palette=github-dark
-            dist/snake-light.svg?palette=github-light
-
-      # Step 2 — Push the generated files to output branch
-      - name: Push snake files to output branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
 
 ###
